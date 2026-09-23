@@ -1,0 +1,11 @@
+{
+  "appToken": "REPLACE_WITH_BASE_APP_TOKEN",
+  "tableId": "REPLACE_WITH_TABLE_ID",
+  "sourceField": "反馈内容",
+  "fields": {
+    "category": "Jev分类",
+    "priority": "Jev优先级",
+    "status": "Jev状态",
+    "confidence": "Jev把握"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "Jev Tab Sort · 标签页整理",
+  "version": "0.2.0",
+  "description": "用 Jev 按用途整理当前窗口标签页。预览后分组，可撤销分组。",
+  "minimum_chrome_version": "120",
+  "permissions": ["tabs", "tabGroups", "storage"],
+  "host_permissions": ["https://api.typesafe.ai/*"],
+  "background": { "service_worker": "background.js", "type": "module" },
+  "action": { "default_popup": "popup.html", "default_title": "Jev 标签页整理" },
+  "content_security_policy": { "extension_pages": "script-src 'self'; object-src 'self'" }
+}

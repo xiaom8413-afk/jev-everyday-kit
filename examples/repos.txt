@@ -1,0 +1,4 @@
+# 每行一个仓库，支持 owner/repo 或完整 GitHub 仓库 URL
+typesafe-ai/typesafe-sdk-js
+microsoft/vscode
+https://github.com/jqlang/jq

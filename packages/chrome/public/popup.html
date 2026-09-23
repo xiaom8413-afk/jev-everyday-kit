@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Jev Tab Sort</title><link rel="stylesheet" href="popup.css"></head>
+<body>
+  <header><div class="brand"><span class="logo">j.</span><span>JEV / EVERYDAY TOOLS</span><span class="number">01</span></div><h1>标签页，<br>各归其位。</h1><p class="intro">把散开的工作，收进清晰的分组。</p></header>
+  <main>
+    <div class="toolbar"><button id="analyze" class="primary">分析当前窗口 <span>↗</span></button><button id="demo" class="secondary">试用样例</button></div>
+    <p class="privacy">分析时仅发送页面标题与域名至 TypeSafe。固定、已有分组和无痕页自动跳过。</p>
+    <div id="status" role="status" aria-live="polite">准备好后，点击分析。</div>
+    <div id="progress-area" hidden><progress id="progress" max="1" value="0"></progress><div class="progress-actions"><button id="cancel" class="text">停止分析</button><button id="resume" class="secondary">继续分析</button><button id="accept-partial" class="text">采用已完成结果</button></div></div>
+    <div id="preview-tools" hidden><input id="search" type="search" placeholder="搜索标题或域名" aria-label="搜索标签页"><div class="preview-select"><button id="select-all" class="text">选择可见页面</button><button id="select-none" class="text">取消可见选择</button></div></div>
+    <section id="results" aria-label="分组预览"></section>
+    <div id="applybar" hidden><div class="selection"><span id="selected-count"></span><span>低把握的页面保持原样</span></div><button id="apply" class="primary full">应用选中分组</button></div>
+    <div id="undo-bar" hidden><button id="undo" class="secondary">撤销分组</button><button id="keep" class="text">保留分组</button></div>
+    <details id="settings"><summary>密钥与整理偏好 <span id="key-status">未设置</span></summary><label for="key">TypeSafe API Key</label><input id="key" type="password" placeholder="输入你的 TypeSafe 密钥" autocomplete="off" spellcheck="false"><div class="key-actions"><button id="save-key" class="secondary">本次会话保存</button><button id="clear-key" class="text">清除密钥</button></div><p class="privacy">密钥仅存于扩展会话，关闭浏览器后清除。不会同步至 Google 账号。</p><div class="preferences"><label>模型<input id="model" value="jev-latest" maxlength="100"></label><div class="pref-grid"><label>自动分类阈值<select id="threshold"><option value="0.75">75% · 均衡</option><option value="0.85">85% · 谨慎</option><option value="0.6">60% · 宽松</option></select></label><label>每次最多页面<input id="max-tabs" type="number" value="300" min="15" max="500"></label></div><label>分组名前缀<input id="prefix" value="Jev" maxlength="30"></label><label>排除域名（每行一个，包含其子域名）<textarea id="excluded-domains" rows="2" placeholder="例如 mail.google.com"></textarea></label><label class="inline-check"><input id="collapsed" type="checkbox">分组后自动折叠</label><button id="save-preferences" class="secondary">保存整理偏好</button><p class="privacy">偏好保存在本地。新的阈值与排除规则在下一次分析时生效。</p></div></details>
+  </main>
+  <footer><span>SMALL DECISIONS. LESS CLUTTER.</span><span>Powered by Jev</span></footer>
+  <script type="module" src="popup.js"></script>
+</body></html>

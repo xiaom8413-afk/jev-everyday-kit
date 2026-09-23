@@ -1,0 +1,28 @@
+name: Jev Star Atlas
+on:
+  workflow_dispatch:
+    inputs:
+      username:
+        description: GitHub username to classify
+        required: true
+        type: string
+permissions:
+  contents: read
+jobs:
+  catalog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Classify public stars
+        id: catalog
+        uses: ./.github/actions/jev-star-atlas
+        with:
+          username: ${{ inputs.username }}
+          typesafe-api-key: ${{ secrets.TYPESAFE_API_KEY }}
+          github-token: ${{ github.token }}
+          limit: '100'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: jev-catalog
+          path: ${{ steps.catalog.outputs.catalog-directory }}
+          if-no-files-found: error

@@ -1,0 +1,35 @@
+{
+  "name": "jev-everyday-kit",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "description": "Three practical Jev tools: Chrome tabs, Feishu triage, GitHub catalog",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "tsc --noEmit",
+    "test": "tsx --test tests/*.test.ts",
+    "demo": "tsx packages/cli/src/main.ts demo",
+    "jev": "tsx packages/cli/src/main.ts",
+    "verify": "npm run check && npm test && npm run build",
+    "studio": "npm run build && node dist/jev.mjs serve",
+    "test:e2e": "playwright test",
+    "verify:all": "npm run verify && npm run test:e2e",
+    "package": "npm run build && node scripts/package.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@types/chrome": "^0.3.0",
+    "@types/node": "^22.20.4",
+    "esbuild": "^0.28.2",
+    "fflate": "^0.8.2",
+    "linkedom": "^0.18.13",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "zod": "^4.6.5"
+  }
+}

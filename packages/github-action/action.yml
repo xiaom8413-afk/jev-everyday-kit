@@ -1,0 +1,36 @@
+name: Jev Star Atlas
+description: Classify public starred repositories with Jev and export a Markdown / JSON tool catalog.
+inputs:
+  username:
+    description: GitHub username whose public stars to classify
+    required: true
+  typesafe-api-key:
+    description: TypeSafe API key (use a repository secret)
+    required: true
+  github-token:
+    description: Optional GitHub token for API rate limits
+    required: false
+  limit:
+    description: Maximum number of public repositories (1–10000)
+    default: '100'
+  output-directory:
+    description: Directory to write catalog.md and catalog.json
+    default: jev-catalog
+  model:
+    description: TypeSafe model identifier
+    default: jev-latest
+  threshold:
+    description: Minimum confidence and selected probability (0.5–0.99)
+    default: '0.75'
+  refresh:
+    description: Ignore prior model cache; manual corrections are retained
+    default: 'false'
+outputs:
+  catalog-directory:
+    description: Absolute directory containing generated catalog files
+runs:
+  using: node24
+  main: index.cjs
+branding:
+  icon: star
+  color: green

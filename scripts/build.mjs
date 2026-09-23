@@ -1,0 +1,16 @@
+import { build } from 'esbuild';
+import { mkdir, cp, chmod, copyFile } from 'node:fs/promises';
+const common = { bundle: true, sourcemap: false, logLevel: 'info', legalComments: 'eof' };
+await mkdir('dist/chrome', { recursive: true });
+await cp('packages/chrome/public', 'dist/chrome', { recursive: true });
+await mkdir('dist/studio', { recursive: true });
+await cp('packages/studio/public', 'dist/studio', { recursive: true });
+await build({ ...common, entryPoints: ['packages/studio/src/app.ts'], outfile: 'dist/studio/app.js', platform: 'browser', format: 'esm', target: 'es2022' });
+await build({ ...common, entryPoints: ['packages/chrome/src/background.ts', 'packages/chrome/src/popup.ts'], outdir: 'dist/chrome', platform: 'browser', format: 'esm', target: 'chrome120' });
+await build({ ...common, entryPoints: ['packages/cli/src/main.ts'], outfile: 'dist/jev.mjs', platform: 'node', format: 'esm', target: 'node22', banner: { js: '#!/usr/bin/env node' } });
+await chmod('dist/jev.mjs', 0o755);
+await build({ ...common, entryPoints: ['packages/github-action/index.ts'], outfile: 'dist/github-action/index.cjs', platform: 'node', format: 'cjs', target: 'node24' });
+await copyFile('packages/github-action/action.yml', 'dist/github-action/action.yml');
+await copyFile('node_modules/zod/LICENSE', 'dist/github-action/THIRD_PARTY_LICENSES.txt');
+await copyFile('node_modules/zod/LICENSE', 'dist/THIRD_PARTY_LICENSES.txt');
+console.log('Ready: dist/chrome · dist/jev.mjs · dist/studio · dist/github-action');

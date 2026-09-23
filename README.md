@@ -1,24 +1,57 @@
-# Jev Everyday Kit · 0.2
+<div align="center">
 
-![Jev Everyday Kit：三个实用工具](docs/images/cover.png)
+# Jev Everyday Kit
 
-[安装与快速开始](#最快开始) · [架构原理](docs/ARCHITECTURE.md) · [效果图库](docs/SHOWCASE.md) · [贡献指南](CONTRIBUTING.md) · [版本记录](CHANGELOG.md)
+**标签页不再散，反馈不再乱，收藏不再找不到。**
 
-**把标签页、反馈与收藏，变成可审阅、可修正的工作流程。** TypeScript 开发，Node.js 22+，本地优先；Chrome 扩展 + 飞书集成 + GitHub 工具目录。
+3 个实用工具 · 1 个本地工作台 · TypeScript · MIT
 
-> 2026-09-23 本地复测：34 项单元/集成测试 + 9 项端到端测试通过。截图为实际程序的离线演示或测试样例；真实 Jev 推理与平台账号联调边界见 [验证记录](docs/VALIDATION.md)。
+[下载安装包](https://github.com/xiaom8413-afk/jev-everyday-kit/releases/tag/v0.2.0) · [快速开始](#最快开始) · [完整效果图](docs/SHOWCASE.md) · [架构原理](docs/ARCHITECTURE.md)
 
-三个常用平台的 Jev 工具，加上一个可以直接操作的本地工作台。
+![Jev Everyday Kit：三个日常效率工具](docs/images/cover.png)
 
-![本地工作台](docs/images/studio.png)
+</div>
 
-| 工具 | 完整使用流程 |
-| --- | --- |
-| **Chrome / Edge · Tab Sort** | 分批分析标签页 → 搜索、选择和手动调整 → 原生分组 → 保留或撤销。支持进度、停止后继续、排除域名、阈值、分组前缀和折叠偏好。 |
-| **飞书 · Feedback Triage** | 配置多维表格 → 检查 / 创建输出列 → 筛选待处理反馈 → 审阅、修正或排除 → 回填 → 查看回执、重试或撤销。 |
-| **GitHub · Star Atlas** | 读取 Star 或仓库清单 → 增量分类 → 搜索与多条件筛选 → 人工修正、备注 → 导出 Markdown / JSON / 独立离线网页。附带 GitHub Action。 |
+将 **Chrome / Edge 标签页、飞书反馈、GitHub 收藏** 接到同一套可审阅的工作流程：模型给出分类建议，你可以修正，代码再执行明确的操作。
 
-真实模式直接调用 **TypeSafe Jev 官方接口**，让模型判断类别与优先级，再由代码执行有限操作。离线样例明确标注“演示”，不冒充真实推理。
+*Three practical tools for browser tabs, Feishu feedback and GitHub stars, with a local-first TypeScript workbench. Review decisions before applying changes.*
+
+## 一个工作台，处理三种日常琐事
+
+![本地工作台：三个工具的统一入口](docs/images/studio.png)
+
+先试内置离线样例，再配置真实服务。工作台提供连接设置、任务历史和结果下载；真实模式调用 TypeSafe Jev 官方接口。
+
+| 浏览器标签页 | 飞书反馈 | GitHub 收藏 |
+| --- | --- | --- |
+| 分析 → 审阅 → 原生分组 | 检查 → 生成计划 → 确认回填 | 读取 → 分类 → 筛选与导出 |
+| 手动调整、低置信度确认、撤销 | 修正、排除、回执、重试与撤销 | 人工备注、增量缓存、离线目录 |
+
+## 01 · Tab Sort：把一窗口标签页收拾清楚
+
+![Chrome / Edge 标签页分类预览](docs/images/tab-sort.png)
+
+先看分组建议，再选择要应用的标签页。支持分批分析、停止后继续、排除域名、分类阈值和分组前缀；应用后可保留或撤销。**不关闭你的页面。** [安装浏览器扩展 →](docs/chrome.md)
+
+## 02 · Feedback Triage：让反馈变成可以处理的清单
+
+![飞书反馈审阅与分类计划](docs/images/feishu.png)
+
+从配置的反馈列生成类别、优先级等建议，在回填前修正或排除。写入后有回执，支持重试与受限撤销；演示界面不会写入真实平台。[配置飞书 →](docs/feishu.md)
+
+## 03 · Star Atlas：收藏之后，也要找得到
+
+![GitHub 收藏分类和筛选目录](docs/images/github.png)
+
+把公开 Star 或指定仓库清单整理成可筛选目录，支持人工修正、备注和增量缓存。可导出 **Markdown / JSON / 独立离线网页**，也可用附带的 GitHub Action 定期整理。[使用工具箱 →](docs/github.md)
+
+> **图片与验证说明**：工作台截图使用离线样例；扩展图来自模拟模型响应的真实 Chromium 测试。它们展示已实现的界面与流程，不代表真实用户数据或线上模型准确率。2026-09-23 本地复测通过 34 项单元/集成测试及 9 项端到端测试；真实账号联调边界见 [验证记录](docs/VALIDATION.md)。
+
+## 为什么不让模型直接改完一切？
+
+![模型判断、程序校验、人工审阅与平台执行](docs/images/architecture.png)
+
+模型负责有限的分类与优先级建议，程序校验结构和阈值，人决定是否应用。三个工具共享核心适配器，把平台操作留在各自适配层，让结果可以解释、修正和追踪。
 
 ## 最快开始
 
